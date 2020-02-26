@@ -171,9 +171,9 @@ defmodule RemoteIp do
   end
 
   defp last_forwarded_ip(req_headers, config) do
-    Logger.debug(fn -> start(config) end)
+    # Logger.debug(fn -> start(config) end)
     ip = req_headers |> ips_given(config) |> most_recent_client_given(config)
-    Logger.debug(fn -> stop(ip) end)
+    # Logger.debug(fn -> stop(ip) end)
     ip
   end
 
@@ -188,15 +188,15 @@ defmodule RemoteIp do
   defp client?(ip, %RemoteIp.Config{clients: clients, proxies: proxies}) do
     cond do
       clients |> contains?(ip) ->
-        Logger.debug(fn -> known_client(ip) end)
+        # Logger.debug(fn -> known_client(ip) end)
         true
 
       proxies |> contains?(ip) ->
-        Logger.debug(fn -> known_proxy(ip) end)
+        # Logger.debug(fn -> known_proxy(ip) end)
         false
 
       true ->
-        Logger.debug(fn -> presumably_client(ip) end)
+        # Logger.debug(fn -> presumably_client(ip) end)
         true
     end
   end

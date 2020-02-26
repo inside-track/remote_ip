@@ -27,15 +27,15 @@ defmodule RemoteIp.Headers do
   @spec parse([header], allowed) :: [ip]
 
   def parse(headers, %MapSet{} = allowed) when is_list(headers) do
-    Logger.debug(fn -> parsing(headers) end)
+    # Logger.debug(fn -> parsing(headers) end)
     ips = headers |> allow(allowed) |> parse_each
-    Logger.debug(fn -> parsed(ips) end)
+    # Logger.debug(fn -> parsed(ips) end)
     ips
   end
 
   defp allow(headers, allowed) do
     filtered = Enum.filter(headers, &allow?(&1, allowed))
-    Logger.debug(fn -> considering(filtered) end)
+    # Logger.debug(fn -> considering(filtered) end)
     filtered
   end
 
